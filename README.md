@@ -5,7 +5,6 @@ Static, dependency-free project page for the paper
 
 - `index.html` — the page (single file; Bulma CSS vendored in `static/css/bulma.min.css`, no external scripts, no analytics)
 - `static/images/` — figures converted from the paper's PDFs, and five hardware panoramas (logos and bystanders blurred)
-- `static/pdfs/GRABS_paper.pdf` — the anonymized paper
 - `.nojekyll` — tells GitHub Pages to serve the files as-is
 
 ## Preview locally
@@ -24,5 +23,5 @@ Static, dependency-free project page for the paper
 
 - No author names, affiliations, lab names, robot namespaces, or internal paths anywhere in the repo.
 - Every photo checked for logos, badges, and bystanders (blurred where present).
-- PDF metadata has empty Author/Title fields (`pdfinfo static/pdfs/GRABS_paper.pdf`).
+- If a paper PDF is added later, its Author/Title metadata must be empty (`pdfinfo`).
 - No links to personal GitHub, Overleaf, YouTube, or Google Drive accounts.
