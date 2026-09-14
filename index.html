@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GRABS: Graded Satisfaction and Belief-Guided Search for Demand-Driven Navigation. Anonymous project page.">
+  <title>GRABS: Graded Satisfaction and Belief-Guided Search for Demand-Driven Navigation</title>
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            <span class="method">GRABS</span>: Graded Satisfaction and Belief-Guided Search for Demand-Driven Navigation
+          </h1>
+          <div class="publication-authors">Anonymous Authors</div>
+          <div class="publication-venue">Under review</div>
+          <div class="anon-badge">Anonymized project page for double-anonymous review</div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a class="button is-dark is-rounded" href="./static/pdfs/GRABS_paper.pdf" target="_blank" rel="noopener">
+                <span class="icon"><svg viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zm192 0v128h128L256 0zM80 224h224a16 16 0 0 1 0 32H80a16 16 0 0 1 0-32zm0 80h224a16 16 0 0 1 0 32H80a16 16 0 0 1 0-32zm0 80h224a16 16 0 0 1 0 32H80a16 16 0 0 1 0-32z"/></svg></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <span class="button is-rounded is-disabled" title="Available soon">
+                <span class="icon"><svg viewBox="0 0 512 512"><path d="M0 128c0-35.3 28.7-64 64-64h256c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zm559.1-14.3c10.4 5.6 16.9 16.4 16.9 28.2v228.2c0 11.8-6.5 22.6-16.9 28.2s-23 5-32.9-1.6l-96-64-14.2-9.5V188.8l14.2-9.5 96-64c9.8-6.5 22.4-7.2 32.9-1.6z"/></svg></span>
+                <span>Video (soon)</span>
+              </span>
+            </span>
+            <span class="link-block">
+              <span class="button is-rounded is-disabled" title="Available soon">
+                <span class="icon"><svg viewBox="0 0 640 512"><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg></span>
+                <span>Code (soon)</span>
+              </span>
+            </span>
+          </div>
+
+          <figure class="figure teaser">
+            <img class="zoomable" src="./static/images/teaser.jpg" alt="Teaser: given the request 'I am tired', GRABS finds a chair, judges that a sofa would be a better item, continues the search, and finds the sofa.">
+            <figcaption>
+              <b>Best-available demand-driven navigation.</b> Given &ldquo;I am tired,&rdquo; conventional demand-driven navigation and
+              object goal navigation both stop at the first chair. GRABS recognizes that a sofa would serve the user better,
+              continues the search, and retrieves the sofa.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABSTRACT ================= -->
+<section class="section" id="abstract">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Abstract</h2>
+    <div class="content">
+      <p>
+        Demand-driven navigation (DDN) asks a robot to satisfy an implicit request such as &ldquo;I am thirsty&rdquo; with any
+        suitable object, rather than the named target of object goal navigation. Yet water, juice, and coffee satisfy it
+        unequally, so the first acceptable object may not be the best. We formulate <em>best-available demand-driven
+        navigation</em>: retrieving the highest-satisfaction object present while balancing quality against time,
+        generalizing both. We present GRABS, a belief-guided framework that needs only a room-level floor plan. A large
+        language model grounds the request into candidate categories with graded satisfaction probabilities, and a second
+        query estimates each candidate's likelihood per room; these define a room utility, the expected satisfaction from
+        searching each room, that a time-aware Markov decision process (MDP) balances against travel and search time. A
+        vision-language model (VLM) verifies candidates, and an unsuccessful search lowers that room's belief before
+        replanning. Holding an acceptable but suboptimal object, the robot asks whether to continue only when finding a
+        better one would exceed a patience threshold. In AI Habitat, Isaac Sim, and hardware trials, GRABS matches the best
+        baselines on explicit requests, raises absolute best-object accuracy by 27.8%, 29.6%, and 27.1% on HM3D, MP3D, and
+        Isaac Sim over a first-acceptable-object baseline, and its time-aware MDP reaches them in up to 29.9% less time
+        than heuristic planning. On hardware, it retrieves the best object for every vague request and asks the user when
+        required.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section class="section" id="problem">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Best-Available Demand-Driven Navigation</h2>
+    <div class="content">
+      <p>
+        Existing demand-driven navigation treats satisfaction as <em>binary</em>: an object either satisfies the request or it
+        does not, so a cup of coffee and a bottle of water count as equally good answers to &ldquo;I am thirsty.&rdquo; None of
+        these methods chooses among substitutable candidates that satisfy the request to different degrees, and none decides
+        whether continuing to search is worth the user's time.
+      </p>
+      <p>
+        We instead assign each candidate a graded satisfaction probability and ask the robot to retrieve the
+        <b>highest-satisfaction object that is actually present</b>, while balancing quality against search time and the
+        user's willingness to wait. The formulation contains both prior tasks as special cases:
+      </p>
+      <ul>
+        <li><b>Demand-driven navigation</b> is the case with binary satisfaction and several acceptable categories.</li>
+        <li><b>Explicit object goal navigation</b> restricts it further to a single named category.</li>
+      </ul>
+      <div class="callout">
+        The robot receives only a request and a room-level floor plan with semantic room labels. Object locations, states,
+        and the set of objects present are unknown and must be inferred and verified during the search.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHOD ================= -->
+<section class="section" id="method">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Method Overview</h2>
+    <figure class="figure">
+      <img class="zoomable" src="./static/images/system.png" alt="System overview of GRABS: intent grounding, spatial grounding, time-aware MDP planning, navigation and verification, decision making and belief update.">
+      <figcaption>
+        <b>Overview of GRABS.</b> A vague request is grounded into graded candidates and per-room beliefs, a time-aware MDP
+        selects the next room, a VLM verifies candidates in the observed panorama, and beliefs are updated before replanning.
+      </figcaption>
+    </figure>
+
+    <div class="stage-grid">
+      <div class="stage">
+        <span class="num">1</span><h4>Intent grounding</h4>
+        <p>An LLM turns the request into candidate categories, each with a satisfaction probability, plus a verification
+          criterion (attributes, relations, or states the object must meet).</p>
+      </div>
+      <div class="stage">
+        <span class="num">2</span><h4>Spatial grounding</h4>
+        <p>A second LLM query estimates how likely each candidate is to occur in each labeled room, using only the room
+          labels of the floor plan. Together these define a <b>room utility</b>: the expected satisfaction gained by
+          searching that room.</p>
+      </div>
+      <div class="stage">
+        <span class="num">3</span><h4>Time-aware MDP planning</h4>
+        <p>Room selection is a small MDP over rooms with an absorbing goal state. Searching a room succeeds with probability
+          equal to its utility, and the cost is travel time plus a fixed inspection time. Value iteration yields the next
+          room; the plan is recomputed after every observation.</p>
+      </div>
+      <div class="stage">
+        <span class="num">4</span><h4>Verification and belief update</h4>
+        <p>A VLM detects candidates in the 360&deg; observation and checks the verification criterion. After a miss, the
+          room's belief for each unverified candidate is lowered by a recall-aware Bayesian update, and candidates that
+          cannot improve on the object in hand are dropped.</p>
+      </div>
+      <div class="stage">
+        <span class="num">5</span><h4>Time-aware interaction</h4>
+        <p>Holding an acceptable but suboptimal object, the robot compares the expected time to find a better one with a
+          patience threshold. Only when that time exceeds the threshold does it ask the user whether to continue.</p>
+      </div>
+    </div>
+
+    <h3 class="title is-4">Prompts</h3>
+    <figure class="figure" style="max-width: 760px;">
+      <img class="zoomable" src="./static/images/prompts.png" alt="Simplified prompts for intent grounding, spatial grounding, and detection, with example outputs for 'I am very thirsty'.">
+      <figcaption>
+        <b>Simplified prompts</b> for intent grounding, spatial grounding, and detection, with example outputs for
+        &ldquo;I am very thirsty.&rdquo;
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= EXPERIMENTAL SETUP ================= -->
+<section class="section" id="setup">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Experimental Setup</h2>
+    <div class="content">
+      <p>
+        We evaluate GRABS at three levels of increasing realism: oracle perception in AI Habitat on HM3D and MP3D, VLM
+        perception in an Isaac Sim digital twin of a physical office, and hardware trials on a quadruped robot in that
+        office.
+      </p>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <div class="table-wrap">
+          <table class="table is-striped is-narrow is-fullwidth results setup">
+            <thead>
+              <tr><th></th><th>AI Habitat</th><th>Isaac Sim</th><th>Hardware</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Environment</td><td>36 HM3D + 11 MP3D scenes</td><td>Simulated office</td><td>Physical office</td></tr>
+              <tr><td>Observation</td><td>Ground-truth inventory</td><td>360&deg; panorama</td><td>360&deg; observation</td></tr>
+              <tr><td>Detection</td><td>Oracle</td><td>VLM</td><td>VLM</td></tr>
+              <tr><td>Tests per method</td><td>576 + 176</td><td>96</td><td>5</td></tr>
+              <tr><td>Human interaction</td><td>Disabled</td><td>Disabled</td><td>Enabled (T<sub>h</sub> = 56 s)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="table-note">Summary of the three experimental settings.</p>
+      </div>
+    </div>
+
+    <h3 class="title is-4">Request types</h3>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow is-fullwidth results setup">
+        <thead><tr><th>Type</th><th>Expected target</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><th colspan="3" class="has-text-centered">Explicit requests</th></tr>
+          <tr><td>Explicit</td><td>Named item</td><td>&ldquo;Find the laptop.&rdquo;</td></tr>
+          <tr><td>Attribute</td><td>Item with a visual attribute</td><td>&ldquo;Find the blue backpack.&rdquo;</td></tr>
+          <tr><td>Relational</td><td>Item related to an anchor</td><td>&ldquo;Find a silver trash bin near a door.&rdquo;</td></tr>
+          <tr><td>Verification</td><td>Item in a specified state</td><td>&ldquo;Is the TV on?&rdquo;</td></tr>
+          <tr><th colspan="3" class="has-text-centered">Vague-intent requests</th></tr>
+          <tr><td>Affordance</td><td>Affords a required function</td><td>&ldquo;I need something to watch a presentation with a group.&rdquo;</td></tr>
+          <tr><td>Human need</td><td>Addresses a human condition</td><td>&ldquo;I am very thirsty.&rdquo;</td></tr>
+          <tr><td>Situational</td><td>Satisfies a situational demand</td><td>&ldquo;I spilled some coffee on the table.&rdquo;</td></tr>
+          <tr><td>Preference</td><td>Best matches a preference</td><td>&ldquo;Which seat would be most comfortable for resting?&rdquo;</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4">Baselines</h3>
+    <div class="content">
+      <ul>
+        <li><b>Simple planner</b> &mdash; our MDP ablation. Same graded grounding and beliefs, but the next room is chosen by a heuristic utility-to-distance ratio instead of solving the MDP.</li>
+        <li><b>No-intent planner</b> &mdash; scores rooms directly from the request without graded candidates and stops at the first object that satisfies the request, as most existing demand-driven methods do.</li>
+        <li><b>Direct GPT planner</b> &mdash; an LLM generates a fixed room order once, with no spatial beliefs or replanning.</li>
+        <li><b>Landmark planner</b> &mdash; grounds the request to a single landmark object instead of a graded candidate list.</li>
+        <li><b>Random planner</b> &mdash; visits rooms in a seeded random order, the room-level analogue of target-agnostic frontier exploration.</li>
+      </ul>
+      <p class="table-note">Starred variants (&#9733;) add an LLM judge that decides whether to keep searching after a satisfactory object is found; they apply to the vague-intent columns only.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section class="section" id="results">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Results</h2>
+
+    <h3 class="title is-4">AI Habitat (oracle perception), HM3D / MP3D</h3>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow is-fullwidth results">
+        <thead>
+          <tr>
+            <th rowspan="2">Method</th>
+            <th colspan="4">Explicit requests</th>
+            <th colspan="4">Vague-intent requests</th>
+          </tr>
+          <tr>
+            <th>SR (%) <span class="arrow">&uarr;</span></th><th>SPL (%) <span class="arrow">&uarr;</span></th><th>Dist. (m) <span class="arrow">&darr;</span></th><th>Time (s) <span class="arrow">&darr;</span></th>
+            <th>Best (%) <span class="arrow">&uarr;</span></th><th>Top-2 (%) <span class="arrow">&uarr;</span></th><th>MS <span class="arrow">&uarr;</span></th><th>Time (s) <span class="arrow">&darr;</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Simple planner</td><td>96.9 / 97.7</td><td>80.3 / 85.0</td><td>15.4 / 21.0</td><td>52.4 / 57.5</td><td>73.6 / 69.3</td><td>78.1 / 85.2</td><td>0.786 / 0.840</td><td>140.3 / 122.7</td></tr>
+          <tr><td>No-intent planner</td><td>94.1 / 96.6</td><td>77.3 / 84.6</td><td>16.3 / 19.7</td><td>55.2 / 54.5</td><td>48.6 / 44.3</td><td>60.8 / 55.7</td><td>0.619 / 0.588</td><td>29.9 / 30.1</td></tr>
+          <tr><td>Direct GPT planner / &#9733;</td><td>92.0 / 87.5</td><td>70.1 / 79.4</td><td>18.4 / 20.4</td><td>37.0 / 28.3</td><td>63.5 / 56.8</td><td>71.5 / 71.6</td><td>0.735 / 0.704</td><td>45.8 / 34.5</td></tr>
+          <tr><td>Landmark planner / &#9733;</td><td>90.6 / 89.8</td><td>76.7 / 80.8</td><td>14.6 / 17.8</td><td>49.5 / 49.5</td><td>64.9 / 65.9</td><td>73.6 / 73.9</td><td>0.749 / 0.759</td><td>81.6 / 79.2</td></tr>
+          <tr><td>Random planner / &#9733;</td><td>91.3 / 89.8</td><td>29.8 / 33.7</td><td>56.6 / 68.5</td><td>132.4 / 131.9</td><td>56.9 / 53.4</td><td>72.6 / 65.9</td><td>0.736 / 0.691</td><td>136.1 / 151.0</td></tr>
+          <tr class="ours"><td>GRABS (Ours)</td><td>96.5 / 97.7</td><td>80.0 / 88.3</td><td>15.7 / 19.4</td><td>54.1 / 56.9</td><td>76.4 / 73.9</td><td>80.2 / 88.6</td><td>0.803 / 0.880</td><td>98.4 / 86.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">MS is mean satisfaction of the retrieved object. Distance in meters, time in seconds.</p>
+
+    <h3 class="title is-4">Isaac Sim (VLM perception)</h3>
+    <div class="table-wrap">
+      <table class="table is-striped is-narrow is-fullwidth results">
+        <thead>
+          <tr>
+            <th rowspan="2">Method</th>
+            <th colspan="4">Explicit requests</th>
+            <th colspan="4">Vague-intent requests</th>
+          </tr>
+          <tr>
+            <th>SR (%) <span class="arrow">&uarr;</span></th><th>SPL (%) <span class="arrow">&uarr;</span></th><th>Dist. (m) <span class="arrow">&darr;</span></th><th>Time (s) <span class="arrow">&darr;</span></th>
+            <th>Best (%) <span class="arrow">&uarr;</span></th><th>Top-2 (%) <span class="arrow">&uarr;</span></th><th>MS <span class="arrow">&uarr;</span></th><th>Time (s) <span class="arrow">&darr;</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Simple planner</td><td>89.6</td><td>85.5</td><td>40.6</td><td>76.2</td><td>64.6</td><td>81.2</td><td>0.799</td><td>166.0</td></tr>
+          <tr><td>No-intent planner</td><td>91.7</td><td>86.7</td><td>25.9</td><td>49.6</td><td>37.5</td><td>60.4</td><td>0.606</td><td>25.4</td></tr>
+          <tr><td>Direct GPT planner / &#9733;</td><td>89.6</td><td>87.4</td><td>30.2</td><td>25.1</td><td>45.9</td><td>62.5</td><td>0.708</td><td>63.9</td></tr>
+          <tr><td>Landmark planner / &#9733;</td><td>81.2</td><td>78.8</td><td>24.6</td><td>53.7</td><td>39.6</td><td>72.9</td><td>0.682</td><td>90.4</td></tr>
+          <tr><td>Random planner / &#9733;</td><td>37.5</td><td>19.0</td><td>102.7</td><td>155.2</td><td>27.1</td><td>66.7</td><td>0.578</td><td>127.0</td></tr>
+          <tr class="ours"><td>GRABS (Ours)</td><td>93.8</td><td>89.6</td><td>29.1</td><td>57.6</td><td>64.6</td><td>83.3</td><td>0.805</td><td>120.8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title is-4">Key findings</h3>
+    <div class="content">
+      <ul>
+        <li><b>Explicit requests are not compromised.</b> GRABS reaches 96.5% SR and 80.0% SPL on HM3D, within 0.4% and 0.3% of the highest results, ties the highest SR on MP3D at 97.7% with the highest SPL at 88.3%, and has the highest SR and SPL in Isaac Sim.</li>
+        <li><b>Graded intent grounding drives the vague-intent gains.</b> Best-object accuracy improves by 27.8% (HM3D), 29.6% (MP3D), and 27.1% (Isaac Sim) absolute over the No-intent planner, which stops at the first acceptable object, and by 11.5% and 8.0% over the Landmark planner on HM3D and MP3D.</li>
+        <li><b>The time-aware MDP improves the quality-time trade-off.</b> Against the Simple planner, which shares the same grounding and beliefs, GRABS achieves higher Best, Top-2, and mean satisfaction while cutting search time from 140.3 to 98.4 s on HM3D and from 122.7 to 86.0 s on MP3D (29.9% less), and from 166.0 to 120.8 s in Isaac Sim.</li>
+        <li><b>Speed alone is not success.</b> The No-intent and Direct GPT planners finish faster, but their lower Best and mean satisfaction show that this comes from accepting lower-quality candidates sooner.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HARDWARE ================= -->
+<section class="section" id="hardware">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Hardware Trials</h2>
+    <div class="content">
+      <p>
+        The hardware trials run on a quadruped robot with a 360&deg; camera payload in the physical office that the Isaac Sim
+        environment replicates. The office is left in its existing state. GRABS retrieves the best available object in all
+        four vague-intent trials, with a mean completion time of 182.8 s, and completes the explicit relational request
+        with an SPL of 32.8%.
+      </p>
+    </div>
+
+    <figure class="figure">
+      <img class="zoomable" src="./static/images/hardware_plan.jpg" alt="Hardware navigation plan and execution for 'I am very thirsty': the robot observes tea at A, asks the user, continues, finds coffee at B and water at C.">
+      <figcaption>
+        <b>Time-aware interaction on hardware, &ldquo;I am very thirsty.&rdquo;</b> The robot detects tea at observation point A.
+        Because the expected time to find a better candidate exceeds the patience threshold, it asks the user whether to
+        continue. After confirmation it finds coffee at B; the remaining expected search time is now below the threshold, so
+        it continues without asking, and finally retrieves water at C, the highest-satisfaction candidate.
+      </figcaption>
+    </figure>
+
+    <h3 class="title is-4">Final observations of the five trials</h3>
+    <div class="carousel" id="trial-carousel">
+      <div class="slides">
+
+        <div class="slide">
+          <div class="trial-head">
+            <span class="tag is-info is-light">Vague intent &middot; Human need</span>
+            <span class="request">&ldquo;I am very thirsty.&rdquo;</span>
+          </div>
+          <img src="./static/images/hardware/b2_step6_dinning-area.jpg" alt="360-degree observation in the dining area showing bottled water.">
+          <p class="outcome"><b>Retrieved:</b> bottled water (satisfaction 1.0) in the dining area after 6 room visits, 320.2 s.
+            Tea and coffee were found on the way; the robot asked the user once and then continued on its own.</p>
+        </div>
+
+        <div class="slide">
+          <div class="trial-head">
+            <span class="tag is-info is-light">Vague intent &middot; Affordance</span>
+            <span class="request">&ldquo;I need something to watch a presentation with a group.&rdquo;</span>
+          </div>
+          <img src="./static/images/hardware/b1_step1_conference-room.jpg" alt="360-degree observation in the conference room showing a television.">
+          <p class="outcome"><b>Retrieved:</b> television (satisfaction 0.8) in the conference room after 1 room visit, 93.4 s.
+            The robot asked whether to keep searching for a higher-ranked display; the user declined, so it delivered the television.</p>
+        </div>
+
+        <div class="slide">
+          <div class="trial-head">
+            <span class="tag is-info is-light">Vague intent &middot; Situational</span>
+            <span class="request">&ldquo;I spilled some coffee on the table.&rdquo;</span>
+          </div>
+          <img src="./static/images/hardware/b3_step3_kitchen.jpg" alt="360-degree observation in the kitchen showing paper towels.">
+          <p class="outcome"><b>Retrieved:</b> paper towel (satisfaction 1.0) in the kitchen after 3 room visits, 146.9 s.</p>
+        </div>
+
+        <div class="slide">
+          <div class="trial-head">
+            <span class="tag is-info is-light">Vague intent &middot; Preference</span>
+            <span class="request">&ldquo;Which seat would be most comfortable for resting?&rdquo;</span>
+          </div>
+          <img src="./static/images/hardware/b4_step3_reception.jpg" alt="360-degree observation in the reception area showing a sofa.">
+          <p class="outcome"><b>Retrieved:</b> sofa (satisfaction 1.0) in the reception area after 3 room visits, 170.6 s.</p>
+        </div>
+
+        <div class="slide">
+          <div class="trial-head">
+            <span class="tag is-warning is-light">Explicit &middot; Relational</span>
+            <span class="request">&ldquo;Find a silver trash bin near a door.&rdquo;</span>
+          </div>
+          <img src="./static/images/hardware/a1test_step4_office-area-2.jpg" alt="360-degree observation in the office area showing a silver trash bin next to a door.">
+          <p class="outcome"><b>Retrieved:</b> the silver trash bin beside a door in the office area after 4 room visits, 71.8 m and 263.5 s (SPL 32.8%).
+            A silver bin away from any door and a black bin were rejected, so category, attribute, and spatial relation were verified jointly.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LIMITATIONS ================= -->
+<section class="section" id="limitations">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Limitations and Future Work</h2>
+    <div class="content">
+      <p>
+        GRABS assumes a floor plan with semantically labeled rooms and reasons at room granularity, so it does not address
+        search within a room. Satisfaction probabilities and the patience threshold are fixed and do not adapt to individual
+        users. Future work includes learning satisfaction values and a patience model adapted per user from interaction
+        feedback, and combining room-level beliefs with frontier-based exploration when no floor plan is available.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container is-max-desktop">
+    <div class="content has-text-centered">
+      <p>Anonymous project page for a paper under double-anonymous review. Author names, affiliations, code, and video will be added after the review period.</p>
+      <p>Page built with <a href="https://bulma.io" rel="noopener" target="_blank">Bulma</a>; layout inspired by the <a href="https://nerfies.github.io" rel="noopener" target="_blank">Nerfies</a> project page template.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="./static/js/index.js"></script>
+</body>
+</html>
