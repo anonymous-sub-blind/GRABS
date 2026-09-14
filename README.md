@@ -4,7 +4,7 @@ Static, dependency-free project page for the paper
 *GRABS: Graded Satisfaction and Belief-Guided Search for Demand-Driven Navigation* (under double-anonymous review).
 
 - `index.html` — the page (single file; Bulma CSS vendored in `static/css/bulma.min.css`, no external scripts, no analytics)
-- `static/images/` — figures converted from the paper's PDFs, and five hardware panoramas (logo and bystanders blurred)
+- `static/images/` — figures converted from the paper's PDFs, and five hardware panoramas (logos and bystanders blurred)
 - `static/pdfs/GRABS_paper.pdf` — the anonymized paper
 - `.nojekyll` — tells GitHub Pages to serve the files as-is
 
@@ -23,6 +23,6 @@ Static, dependency-free project page for the paper
 ## Anonymity checklist before every publish
 
 - No author names, affiliations, lab names, robot namespaces, or internal paths anywhere in the repo.
-- Every photo checked for logos, badges, and bystanders (the office wall logo is blurred in the reception panorama).
+- Every photo checked for logos, badges, and bystanders (blurred where present).
 - PDF metadata has empty Author/Title fields (`pdfinfo static/pdfs/GRABS_paper.pdf`).
 - No links to personal GitHub, Overleaf, YouTube, or Google Drive accounts.
